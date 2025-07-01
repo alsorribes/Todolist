@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+
+//Llista de tasques
+@Component({
+  selector: 'app-task-list',
+  imports: [],
+  templateUrl: './task-list.html',
+  styleUrl: './task-list.css'
+})
+export class TaskList {
+
+}

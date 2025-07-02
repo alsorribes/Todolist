@@ -21,13 +21,6 @@ export class TaskService {
   }
 
   /**
-   * Obtenir totes les tasques
-   */
-  //getAllTasks(): Task[] {
-  //  return this.tasks;
-//  }
-
-  /**
    * Afegir una nova tasca
    */
   addTask(title: string, description?: string): Task {

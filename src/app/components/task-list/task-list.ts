@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 //Llista de tasques
 @Component({
   selector: 'app-task-list',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css'
 })

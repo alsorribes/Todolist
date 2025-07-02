@@ -21,6 +21,13 @@ export class TaskService {
   }
 
   /**
+   * Obtenir totes les tasques
+   */
+  //getAllTasks(): Task[] {
+  //  return this.tasks;
+//  }
+
+  /**
    * Afegir una nova tasca
    */
   addTask(title: string, description?: string): Task {
@@ -74,10 +81,70 @@ export class TaskService {
   /**
    * Actualitzar una tasca existent
    */
-  //updateTask()
+  updateTask(taskId: number, updates: Partial<Omit<Task, 'id' | 'createdAt'>>): void {
+    this.tasksSignals.update(tasks => 
+      tasks.map(task => 
+        task.id === taskId
+          ? {...task, ...updates}
+          : task
+      )
+    );
+    this.saveTasksToStorage();
+  }
 
+  /**
+   * Obtenim una tasca per ID
+   */
+  getTaskById(taskId: number): Task | undefined {
+    return this.tasksSignals().find(task => task.id === taskId)
+  }
 
+  /**
+   * Obté totes les tasques completades
+   */
+  getCompletedTasks(): Task[] {
+    return this.tasksSignals().filter(task => task.completed);
+  }
 
+  /**
+   * Obté totes les tasques pendents
+   */
+  getPendingTasks(): Task[] {
+    return this.tasksSignals().filter(task => !task.completed);
+  }
+
+  /**
+   * Obté el número total de tasques
+   */
+  getTotalTasksCount(): number {
+    return this.tasksSignals().length;
+  }
+
+  /**
+   * Obté el número total de tasques completades
+   */
+  getCompletedTasksCount(): number {
+    return this.getCompletedTasks().length;
+  }
+
+  /**
+   * Neteja totes les tasques completades
+   */
+  clearCompletedTasks(): void {
+    this.tasksSignals.update(tasks => 
+      tasks.filter(task => !task.completed)
+    );
+    this.saveTasksToStorage();
+  }
+
+  /**
+   * Neteja totes les tasques
+   */
+  clearAllTasks(): void {
+    this.tasksSignals.set([]);
+    this.nextId.set(1);
+    this.saveTasksToStorage();
+  }
 
   /**
    * Guarda les tasques al localStorage

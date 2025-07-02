@@ -1,1 +1,72 @@
 <p>task-list works!</p>
+<div class="task-list-container">
+  <!-- Estadísticas de tareas -->
+  <div class="task-stats" *ngIf="totalTasks > 0">
+    <span class="stats-item">
+      Total: <strong>{{ totalTasks }}</strong>
+    </span>
+    <span class="stats-item">
+      Pendientes: <strong>{{ pendingTasks }}</strong>
+    </span>
+    <span class="stats-item">
+      Completadas: <strong>{{ completedTasks }}</strong>
+    </span>
+  </div>
+
+  <!-- Lista de tareas -->
+  <div class="tasks-container">
+    <div *ngIf="tasks.length === 0" class="no-tasks">
+      <p>No hay tareas todavía. ¡Agrega tu primera tarea!</p>
+    </div>
+
+    <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
+      <div class="task-content">
+        <div class="task-checkbox">
+          <input 
+            type="checkbox" 
+            [checked]="task.completed"
+            (change)="compTask(task.id)"
+            [id]="'task-' + task.id">
+          <label [for]="'task-' + task.id"></label>
+        </div>
+        
+        <div class="task-info">
+          <h3 class="task-title" [class.completed-text]="task.completed">
+            {{ task.title }}
+          </h3>
+          <p class="task-description" *ngIf="task.description" [class.completed-text]="task.completed">
+            {{ task.description }}
+          </p>
+          <small class="task-date">
+            Creada: {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}
+          </small>
+        </div>
+      </div>
+      
+      <div class="task-actions">
+        <button 
+          class="delete-btn" 
+          (click)="deleteTask(task.id)"
+          title="Eliminar tarea">
+          🗑️
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acciones masivas -->
+  <div class="bulk-actions" *ngIf="totalTasks > 0">
+    <button 
+      class="clear-completed-btn" 
+      (click)="clearCompleted()"
+      [disabled]="completedTasks === 0">
+      Limpiar Completadas ({{ completedTasks }})
+    </button>
+    
+    <button 
+      class="clear-all-btn" 
+      (click)="clearAll()">
+      Limpiar Todas
+    </button>
+  </div>
+</div>

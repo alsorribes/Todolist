@@ -13,5 +13,5 @@ import { TaskList } from './components/task-list/task-list';
   styleUrls: ['./app.css']
 })
 export class App {
-  protected title = 'TodoList';
+  protected title = 'ToDoList';
 }

@@ -5,22 +5,28 @@ import { FormsModule } from '@angular/forms';
 //Formulari per afegir tasques
 @Component({
   selector: 'app-task-form',
-  standalone: true,
   imports: [FormsModule],
+  standalone: true,
   templateUrl: './task-form.html',
-  styleUrls: ['./task-form.css']
+  styleUrl: './task-form.css'
 })
 export class TaskForm {
   private taskService = inject(TaskService);
 
-  title = '';
+  public title = '';
   description = '';
 
   onSubmit() {
-    if (this.title.trim()) {
-      this.taskService.addTask(this.title, this.description);
-      this.title = '';
-      this.description = '';
+    console.log(this.title)
+    const title = this.title.trim();
+    if (title) {
+      this.taskService.addTask(title, this.description);
+      this.cleanContents();
     }
+  }
+
+  private cleanContents() {
+    this.title = '';
+    this.description = '';
   }
 }

@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 //Formulari per afegir tasques
 @Component({
   selector: 'app-task-form',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './task-form.html',
-  styleUrl: './task-form.css'
+  styleUrls: ['./task-form.css']
 })
 export class TaskForm {
   private taskService = inject(TaskService);

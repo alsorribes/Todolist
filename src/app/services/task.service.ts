@@ -1,7 +1,8 @@
 //Lògica per manejar tasques
 
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Inject, signal, PLATFORM_ID } from '@angular/core';
 import { Task } from '../models/task.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,15 @@ export class TaskService {
   //Exposem les tasques com a senyal de només lectura
   readonly tasks = this.tasksSignals.asReadonly();
 
-  constructor() { 
-    //Carreguem les tasques del localStorage a l'inicialitzar
-    this.loadTasksFromStorage();
+  //Carreguem les tasques del localStorage a l'inicialitzar
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+     this.loadTasksFromStorage();
+    }
   }
+
 
   /**
    * Afegir una nova tasca
@@ -143,6 +149,7 @@ export class TaskService {
    * Guarda les tasques al localStorage
    */
   private saveTasksToStorage(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     try {
       const tasksData = {
         tasks: this.tasksSignals(),
@@ -158,6 +165,7 @@ export class TaskService {
    * Carrega les tasques desde el localStorage
    */
   private loadTasksFromStorage(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     try {
       const stored = localStorage.getItem('todolist-tasks');
       if (stored) {

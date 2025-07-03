@@ -1,4 +1,3 @@
-<p>task-list works!</p>
 <div class="task-list-container">
   <!-- Estadísticas de tareas -->
   <div class="task-stats" *ngIf="totalTasks > 0">
@@ -6,17 +5,17 @@
       Total: <strong>{{ totalTasks }}</strong>
     </span>
     <span class="stats-item">
-      Pendientes: <strong>{{ pendingTasks }}</strong>
+      Pendents: <strong>{{ pendingTasks }}</strong>
     </span>
     <span class="stats-item">
-      Completadas: <strong>{{ completedTasks }}</strong>
+      Completades: <strong>{{ completedTasks }}</strong>
     </span>
   </div>
 
   <!-- Lista de tareas -->
   <div class="tasks-container">
     <div *ngIf="tasks.length === 0" class="no-tasks">
-      <p>No hay tareas todavía. ¡Agrega tu primera tarea!</p>
+      <p>Encara no hi ha tasques. Afegeix la teva primera tasca!</p>
     </div>
 
     <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
@@ -47,7 +46,7 @@
         <button 
           class="delete-btn" 
           (click)="deleteTask(task.id)"
-          title="Eliminar tarea">
+          title="Eliminar tasca">
           🗑️
         </button>
       </div>
@@ -60,13 +59,13 @@
       class="clear-completed-btn" 
       (click)="clearCompleted()"
       [disabled]="completedTasks === 0">
-      Limpiar Completadas ({{ completedTasks }})
+      Netejar Completades ({{ completedTasks }})
     </button>
     
     <button 
       class="clear-all-btn" 
       (click)="clearAll()">
-      Limpiar Todas
+      Netejar Totes
     </button>
   </div>
 </div>

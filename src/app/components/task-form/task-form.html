@@ -1,28 +1,27 @@
-<p>task-form works!</p>
 <form (ngSubmit)="onSubmit()" class="task-form">
   <div class="form-group">
-    <label for="title">Título de la tarea:</label>
+    <label for="title">Títol de la tasca:</label>
     <input 
       type="text" 
       id="title" 
       [(ngModel)]="title" 
       name="title"
-      placeholder="Ingresa el título de la tarea"
+      placeholder="Afegeix el títol de la tasca"
       required>
   </div>
   
   <div class="form-group">
-    <label for="description">Descripción (opcional):</label>
+    <label for="description">Descripció (opcional):</label>
     <textarea 
       id="description" 
       [(ngModel)]="description" 
       name="description"
-      placeholder="Descripción de la tarea"
+      placeholder="Descripció de la tasca"
       rows="3">
     </textarea>
   </div>
   
   <button type="submit" [disabled]="!title.trim()">
-    Agregar Tarea
+    Afegir Tasca
   </button>
 </form>

@@ -3,11 +3,19 @@
     <section class="form-section">
       <h2>Editar tasca</h2>
       <form #editForm="ngForm" class="task-form">
-        <label for="title">Títol</label>
+        <label for="title">Títol: </label>
         <input
           id="title"
           name="title"
           [(ngModel)]="task.title"
+          class="form-input"
+        />
+
+        <label for="description">Descripció: </label>
+        <input
+          id="description"
+          name="description"
+          [(ngModel)]="task.description"
           class="form-input"
         />
 

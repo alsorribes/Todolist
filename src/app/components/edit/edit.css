@@ -35,3 +35,10 @@
 .form-button:hover {
   background-color: #1565c0;
 }
+
+.task-form label,
+.task-form input,
+.task-form textarea,
+.task-form .checkbox-label {
+  margin-left: 1.5rem;
+}

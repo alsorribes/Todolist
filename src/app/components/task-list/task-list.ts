@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
+import { RouterModule } from '@angular/router';
 
 //Llista de tasques
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css'
 })

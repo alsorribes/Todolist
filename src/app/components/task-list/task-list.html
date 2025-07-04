@@ -31,7 +31,14 @@
         
         <div class="task-info">
           <h3 class="task-title" [class.completed-text]="task.completed">
-            {{ task.title }}
+            <ng-container *ngIf="!task.completed; else plainTitle">
+              <a [routerLink]="['/edit', task.id]" class="task-link"> <!-- Si la tasca no esta completada podem accedir al link. Sino nomes mostrem el text-->
+                {{ task.title }}
+              </a>
+            </ng-container>
+            <ng-template #plainTitle>
+              {{ task.title }}
+            </ng-template>
           </h3>
           <p class="task-description" *ngIf="task.description" [class.completed-text]="task.completed">
             {{ task.description }}
@@ -40,7 +47,7 @@
             Creada: {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}
           </small>
         </div>
-      </div>
+
       
       <div class="task-actions">
         <button 

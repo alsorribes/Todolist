@@ -21,15 +21,30 @@
     required>
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="priority">Prioritat:</label>
-    <select id="priority" name="priority" [(ngModel)]="priority" required>
-      <option value="" disabled selected>Selecciona la prioritat</option>
-      <option value="high">Alta</option>
-      <option value="medium">Mitjana</option>
-      <option value="low">Baixa</option>
-    </select>
+      <div class="priority-buttons">
+        <button
+          type="button"
+          [ngClass]="{ 'active-priority': priority === 'high', 'high': true }"
+          (click)="priority = 'high'">
+          Alta
+        </button>
+        <button
+          type="button"
+          [ngClass]="{ 'active-priority': priority === 'medium', 'medium': true }"
+          (click)="priority = 'medium'">
+          Mitjana
+        </button>
+        <button
+          type="button"
+          [ngClass]="{ 'active-priority': priority === 'low', 'low': true }"
+          (click)="priority = 'low'">
+          Baixa
+        </button>
+      </div>
   </div>
+  
   
   <button type="submit" [disabled]="!title">
     Afegir Tasca

@@ -78,6 +78,34 @@ button[type="submit"]:disabled {
   box-shadow: none;
 }
 
+.priority-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.priority-buttons button {
+  padding: 0.4rem 4.9rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.priority-buttons button.high {
+  background-color: #e74c3c; /* rojo */
+}
+
+.priority-buttons button.medium {
+  background-color: #e67e22; /* naranja */
+}
+
+.priority-buttons button.low {
+  background-color: #27ae60; /* verde */
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .task-form {

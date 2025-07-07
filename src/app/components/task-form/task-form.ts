@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 //Formulari per afegir tasques
 @Component({
   selector: 'app-task-form',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   standalone: true,
   templateUrl: './task-form.html',
   styleUrl: './task-form.css'

@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
 import { RouterModule } from '@angular/router';
 import { TaskStatusFilterPipe } from '../../pipes/task-status-filter-pipe';
+import { PriorityFilterPipe } from '../../pipes/priority-filter-pipe';
 
 //Llista de tasques
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, TaskStatusFilterPipe],
+  imports: [CommonModule, RouterModule, TaskStatusFilterPipe, PriorityFilterPipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css'
 })
 export class TaskList {
   private taskService = inject(TaskService);
   filter: 'all' | 'completed' | 'pending' = 'all';  //Declarem els estats de les tasques per poder filtrar-los
+  priorityFilter: 'all' | 'high' | 'medium' | 'low' = 'all';  //Declarem les prioritats de cada tasca
 
   //Exposem les tasques del servei
   get tasks() {

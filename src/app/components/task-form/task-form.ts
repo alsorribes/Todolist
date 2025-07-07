@@ -15,12 +15,13 @@ export class TaskForm {
 
   public title = '';
   description = '';
+  priority: 'high' | 'medium' | 'low' = 'low'; //Per defecte prioritat baixa
 
   onSubmit() {
     console.log(this.title)
     const title = this.title.trim();
     if (title) {
-      this.taskService.addTask(title, this.description);
+      this.taskService.addTask(title, this.description, this.priority);
       this.cleanContents();
     }
   }

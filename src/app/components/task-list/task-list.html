@@ -13,6 +13,13 @@
   </div>
 
   <!-- Lista de tareas -->
+  <div class="priority-filter-buttons">
+    <button (click)="priorityFilter = 'all'">Totes</button>
+    <button (click)="priorityFilter = 'high'">Alta</button>
+    <button (click)="priorityFilter = 'medium'">Mitjana</button>
+    <button (click)="priorityFilter = 'low'">Baixa</button>
+  </div>
+
   <div class="filter-buttons">
     <button (click)="filter = 'all'" [class.activate]="filter === 'all'">Totes</button>
     <button (click)="filter = 'pending'" [class.activate]="filter === 'pending'">Pendents</button>
@@ -23,7 +30,7 @@
       <p>Encara no hi ha tasques. Afegeix la teva primera tasca!</p>
     </div>
 
-    <div *ngFor="let task of tasks | taskStatusFilter:filter" class="task-item" [class.completed]="task.completed">
+    <div *ngFor="let task of tasks | priorityFilter:priorityFilter | taskStatusFilter:filter" class="task-item" [class.completed]="task.completed">
       <div class="task-content">
         <div class="task-checkbox">
           <input 
@@ -51,8 +58,10 @@
           <small class="task-date">
             Creada: {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}
           </small>
+          <small class="task-priority" *ngIf="task.priority">
+            Prioritat: {{ task.priority }}
+          </small>
         </div>
-
       
       <div class="task-actions">
         <button 

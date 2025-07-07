@@ -7,4 +7,5 @@ export interface Task {
     description?: string;
     completed: boolean;
     createdAt: Date;
+    priority: 'high' | 'medium' | 'low';
 }

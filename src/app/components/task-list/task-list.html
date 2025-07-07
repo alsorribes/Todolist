@@ -13,12 +13,17 @@
   </div>
 
   <!-- Lista de tareas -->
+  <div class="filter-buttons">
+    <button (click)="filter = 'all'" [class.activate]="filter === 'all'">Totes</button>
+    <button (click)="filter = 'pending'" [class.activate]="filter === 'pending'">Pendents</button>
+    <button (click)="filter = 'completed'" [class.activate]="filter === 'completed'">Completades</button>
+  </div>
   <div class="tasks-container">
     <div *ngIf="tasks.length === 0" class="no-tasks">
       <p>Encara no hi ha tasques. Afegeix la teva primera tasca!</p>
     </div>
 
-    <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
+    <div *ngFor="let task of tasks | taskStatusFilter:filter" class="task-item" [class.completed]="task.completed">
       <div class="task-content">
         <div class="task-checkbox">
           <input 

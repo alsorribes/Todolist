@@ -2,16 +2,19 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
 import { RouterModule } from '@angular/router';
+import { TaskStatusFilterPipe } from '../../pipes/task-status-filter-pipe';
 
 //Llista de tasques
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, TaskStatusFilterPipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css'
 })
 export class TaskList {
   private taskService = inject(TaskService);
+  filter: 'all' | 'completed' | 'pending' = 'all';  //Declarem els estats de les tasques per poder filtrar-los
 
   //Exposem les tasques del servei
   get tasks() {

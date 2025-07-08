@@ -2,11 +2,25 @@
 <div class="app-container">
   <!-- Header -->
   <header class="app-header">
-    <h1 class="app-title">📝 {{ title }}</h1>
-    <p class="app-subtitle">Organitza les teves tasques de manera eficient</p>
+    <div class="user-selector">
+      <button (click)="toggleUserMenu()" class="user-botton">
+        <span class="user-icon">👤</span>
+        <strong class="user-name">{{ name$ | async }}</strong>
+      </button>
+
+      <ul *ngIf="userMenuOpen" class="user-dropdown">
+        <li (click)="setToJoan()"> Joan</li>
+        <li (click)="setToJordi()"> Jordi</li>
+        <li (click)="setToAlba()"> Alba</li>
+      </ul>
+    </div>
+
+    <div class="title-container">
+      <h1 class="app-title">📝 {{ title }}</h1>
+      <p class="app-subtitle">Organitza les teves tasques de manera eficient</p>
+    </div>
   </header>
-  <app-user></app-user>
-  
+
   <!-- Main Content -->
   <main class="app-main">
     <!-- Formulario para agregar tareas -->

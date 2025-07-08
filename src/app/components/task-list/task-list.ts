@@ -16,7 +16,7 @@ import { PriorityFilterPipe } from '../../pipes/priority-filter-pipe';
 export class TaskList {
   private taskService = inject(TaskService);
   filter: 'all' | 'completed' | 'pending' = 'all';  //Declarem els estats de les tasques per poder filtrar-los
-  priorityFilter: 'all' | 'high' | 'medium' | 'low' = 'all';  //Declarem les prioritats de cada tasca
+  selectedPriority: 'high' | 'medium' | 'low' | 'all' = 'all';  //Declarem les prioritats de cada tasca
 
   //Exposem les tasques del servei
   get tasks() {
@@ -57,4 +57,13 @@ export class TaskList {
       this.taskService.clearAllTasks();
     }
   }
+
+  setPriorityFilter(priority: 'high' | 'medium' | 'low' | 'all'): void {
+    this.selectedPriority = priority;
+  }
+
+  setStatusFilter(status: 'all' | 'completed' | 'pending'): void {
+    this.filter = status;
+  }
+
 }

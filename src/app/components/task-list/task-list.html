@@ -13,24 +13,26 @@
   </div>
 
   <!-- Lista de tareas -->
-  <div class="priority-filter-buttons">
-    <button (click)="priorityFilter = 'all'">Totes</button>
-    <button (click)="priorityFilter = 'high'">Alta</button>
-    <button (click)="priorityFilter = 'medium'">Mitjana</button>
-    <button (click)="priorityFilter = 'low'">Baixa</button>
+  <h3>Filtrar per prioritat:</h3>
+  <div class="filter-buttons">
+    <button [ngClass]="{ active: selectedPriority === 'all' }" (click)="setPriorityFilter('all')">Totes</button>
+    <button [ngClass]="{ active: selectedPriority === 'high' }" (click)="setPriorityFilter('high')">Alta</button>
+    <button [ngClass]="{ active: selectedPriority === 'medium' }" (click)="setPriorityFilter('medium')">Mitjana</button>
+    <button [ngClass]="{ active: selectedPriority === 'low' }" (click)="setPriorityFilter('low')">Baixa</button>
   </div>
 
+  <h3>Filtrar per estat:</h3>
   <div class="filter-buttons">
-    <button (click)="filter = 'all'" [class.activate]="filter === 'all'">Totes</button>
-    <button (click)="filter = 'pending'" [class.activate]="filter === 'pending'">Pendents</button>
-    <button (click)="filter = 'completed'" [class.activate]="filter === 'completed'">Completades</button>
+    <button (click)="setStatusFilter('all')" [ngClass]="{ active: filter === 'all' }">Totes</button>
+    <button (click)="setStatusFilter('pending')" [ngClass]="{ active: filter === 'pending' }">Pendents</button>
+    <button (click)="setStatusFilter('completed')" [ngClass]="{ active: filter === 'completed' }">Completades</button>
   </div>
   <div class="tasks-container">
     <div *ngIf="tasks.length === 0" class="no-tasks">
       <p>Encara no hi ha tasques. Afegeix la teva primera tasca!</p>
     </div>
 
-    <div *ngFor="let task of tasks | priorityFilter:priorityFilter | taskStatusFilter:filter" class="task-item" [class.completed]="task.completed">
+    <div *ngFor="let task of tasks | priorityFilter:selectedPriority | taskStatusFilter:filter" class="task-item" [class.completed]="task.completed">
       <div class="task-content">
         <div class="task-checkbox">
           <input 

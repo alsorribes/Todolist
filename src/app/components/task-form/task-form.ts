@@ -16,7 +16,7 @@ export class TaskForm {
 
   public title = '';
   description = '';
-  priority: 'high' | 'medium' | 'low' = 'low'; //Per defecte prioritat baixa
+  priority: 'Alta' | 'Mitjana' | 'Baixa' = 'Baixa'; //Per defecte prioritat baixa
 
   onSubmit() {
     console.log(this.title)

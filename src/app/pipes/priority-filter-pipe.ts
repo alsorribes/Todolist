@@ -7,7 +7,7 @@ import { Task } from '../models/task.model';
 })
 export class PriorityFilterPipe implements PipeTransform {
 
-  transform(tasks: Task[], priority: 'all' | 'high' | 'medium' | 'low'): Task[] {
+  transform(tasks: Task[], priority: 'all' | 'Alta' | 'Mitjana' | 'Baixa'): Task[] {
     if (!tasks) return [];
 
     if (priority === 'all') {

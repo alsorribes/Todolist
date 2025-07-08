@@ -29,7 +29,7 @@ export class TaskService {
   /**
    * Afegir una nova tasca
    */
-  addTask(title: string, description: string, priority: 'high' | 'medium' | 'low'): Task {
+  addTask(title: string, description: string, priority: 'Alta' | 'Mitjana' | 'Baixa'): Task {
     const newTask: Task = {
       id: this.nextId(),
       title: title.trim(),

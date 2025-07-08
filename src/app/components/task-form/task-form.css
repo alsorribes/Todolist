@@ -93,15 +93,15 @@ button[type="submit"]:disabled {
   color: white;
 }
 
-.priority-buttons button.high {
+.priority-buttons button.Alta {
   background-color: #e74c3c; /* rojo */
 }
 
-.priority-buttons button.medium {
+.priority-buttons button.Mitjana {
   background-color: #e67e22; /* naranja */
 }
 
-.priority-buttons button.low {
+.priority-buttons button.Baixa {
   background-color: #27ae60; /* verde */
 }
 

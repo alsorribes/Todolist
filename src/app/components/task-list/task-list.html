@@ -16,9 +16,9 @@
   <h3>Filtrar per prioritat:</h3>
   <div class="filter-buttons">
     <button [ngClass]="{ active: selectedPriority === 'all' }" (click)="setPriorityFilter('all')">Totes</button>
-    <button [ngClass]="{ active: selectedPriority === 'high' }" (click)="setPriorityFilter('high')">Alta</button>
-    <button [ngClass]="{ active: selectedPriority === 'medium' }" (click)="setPriorityFilter('medium')">Mitjana</button>
-    <button [ngClass]="{ active: selectedPriority === 'low' }" (click)="setPriorityFilter('low')">Baixa</button>
+    <button [ngClass]="{ active: selectedPriority === 'Alta' }" (click)="setPriorityFilter('Alta')">Alta</button>
+    <button [ngClass]="{ active: selectedPriority === 'Mitjana' }" (click)="setPriorityFilter('Mitjana')">Mitjana</button>
+    <button [ngClass]="{ active: selectedPriority === 'Baixa' }" (click)="setPriorityFilter('Baixa')">Baixa</button>
   </div>
 
   <h3>Filtrar per estat:</h3>

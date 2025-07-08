@@ -23,9 +23,9 @@
 
   <h3>Filtrar per estat:</h3>
   <div class="filter-buttons">
-    <button (click)="setStatusFilter('all')" [ngClass]="{ active: filter === 'all' }">Totes</button>
-    <button (click)="setStatusFilter('pending')" [ngClass]="{ active: filter === 'pending' }">Pendents</button>
-    <button (click)="setStatusFilter('completed')" [ngClass]="{ active: filter === 'completed' }">Completades</button>
+    <button [ngClass]="{ active: filter === 'all' }" (click)="setStatusFilter('all')">Totes</button>
+    <button [ngClass]="{ active: filter === 'pending' }" (click)="setStatusFilter('pending')">Pendents</button>
+    <button [ngClass]="{ active: filter === 'completed' }" (click)="setStatusFilter('completed')">Completades</button>
   </div>
   <div class="tasks-container">
     <div *ngIf="tasks.length === 0" class="no-tasks">

@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { take } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 //Formulari per afegir tasques
 @Component({
@@ -21,14 +22,28 @@ export class TaskForm {
   description = '';
   priority: 'Alta' | 'Mitjana' | 'Baixa' = 'Baixa'; //Per defecte prioritat baixa
 
+  // Correcció: Convertir el observable a signal directament
+  private userSignal = toSignal(this.userService.name$, { initialValue: 'Usuari inicial' });
+  
+  // Computed que verifica si hi ha un usuari valid seleccionat
+  currentUser = computed(() => {
+    const user = this.userSignal();
+    return user !== 'Usuari inicial' ? user : null;
+  });
+
   onSubmit() {
     console.log(this.title)
     const title = this.title.trim();
+    const user = this.currentUser();
+
+    if (!user) {
+      alert('Has de seleccionar un usuari abans de afegir una tasca a la llista!');
+      return;
+    }
+
     if (title) {
-      this.userService.name$.pipe(take(1)).subscribe(user => { //Afegim accés al UserService i fem servir name$ amb take(1) per obtenir l'usuari actiu només una vegada
         this.taskService.addTask(title, this.description, this.priority, user);
-        this.cleanContents();
-      });      
+        this.cleanContents();     
     }
   }
 

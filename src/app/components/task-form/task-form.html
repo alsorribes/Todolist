@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" class="task-form">
+  
   <div class="form-group">
     <label for="title">Títol de la tasca:</label>
     <input 
@@ -8,6 +9,7 @@
       name="title"
       placeholder="Escriu el títol de la tasca"
       [disabled]="!currentUser()"
+      (click)="showUserAlert()"
     required>
   </div>
 
@@ -20,6 +22,7 @@
       name="description"
       placeholder="Escriu la descripció de la tasca"
       [disabled]="!currentUser()"
+      (click)="showUserAlert()"
     required>
   </div>
 
@@ -33,6 +36,7 @@
           (click)="priority = 'Alta'">
           Alta
         </button>
+
         <button
           type="button"
           [ngClass]="{ 'active-priority': priority === 'Mitjana', 'Mitjana': true }"
@@ -40,6 +44,7 @@
           (click)="priority = 'Mitjana'">
           Mitjana
         </button>
+
         <button
           type="button"
           [ngClass]="{ 'active-priority': priority === 'Baixa', 'Baixa': true }"

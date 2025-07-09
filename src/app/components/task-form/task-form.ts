@@ -21,6 +21,7 @@ export class TaskForm {
   public title = '';
   description = '';
   priority: 'Alta' | 'Mitjana' | 'Baixa' = 'Baixa'; //Per defecte prioritat baixa
+  showUserMessage = false; // Per mostrar missatge a la interfície
 
   // Correcció: Convertir el observable a signal directament
   private userSignal = toSignal(this.userService.name$, { initialValue: 'Usuari inicial' });
@@ -31,19 +32,34 @@ export class TaskForm {
     return user !== 'Usuari inicial' ? user : null;
   });
 
+  ngOnInit() {
+    // Mostrar alerta a l'arrancar la aplicació si no hi ha un usuari seleccionat
+    if (typeof window !== 'undefined' && !this.currentUser()) {
+      setTimeout(() => {
+        window.alert('Selecciona un usuari abans de començar a afegir tasques!');
+      }, 100);
+    }
+  }
+
   onSubmit() {
     console.log(this.title)
     const title = this.title.trim();
     const user = this.currentUser();
 
     if (!user) {
-      alert('Has de seleccionar un usuari abans de afegir una tasca a la llista!');
+      console.warn('Selecciona un usuari abans de començar a afegir tasques!');
       return;
     }
 
     if (title) {
         this.taskService.addTask(title, this.description, this.priority, user);
         this.cleanContents();     
+    }
+  }
+
+  showUserAlert(): void {
+    if (typeof window !== 'undefined' && !this.currentUser()) {
+      window.alert('Selecciona un usuari abans de començar a afegir tasques!');
     }
   }
 

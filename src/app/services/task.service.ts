@@ -29,14 +29,15 @@ export class TaskService {
   /**
    * Afegir una nova tasca
    */
-  addTask(title: string, description: string, priority: 'Alta' | 'Mitjana' | 'Baixa'): Task {
+  addTask(title: string, description: string, priority: 'Alta' | 'Mitjana' | 'Baixa', usuari: string): Task {
     const newTask: Task = {
       id: this.nextId(),
       title: title.trim(),
       description: description?.trim() || undefined,
       completed: false,
       createdAt: new Date(),
-      priority
+      priority,
+      usuari
     };
 
     //Actualitzem l'array de tasques

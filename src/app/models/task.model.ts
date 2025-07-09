@@ -8,4 +8,5 @@ export interface Task {
     completed: boolean;
     createdAt: Date;
     priority: 'Alta' | 'Mitjana' | 'Baixa';
+    usuari: string;
 }

@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
+import { take } from 'rxjs';
 
 //Formulari per afegir tasques
 @Component({
@@ -13,6 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskForm {
   private taskService = inject(TaskService);
+  private userService = inject(UserService);
 
   public title = '';
   description = '';
@@ -22,8 +25,10 @@ export class TaskForm {
     console.log(this.title)
     const title = this.title.trim();
     if (title) {
-      this.taskService.addTask(title, this.description, this.priority);
-      this.cleanContents();
+      this.userService.name$.pipe(take(1)).subscribe(user => { //Afegim accés al UserService i fem servir name$ amb take(1) per obtenir l'usuari actiu només una vegada
+        this.taskService.addTask(title, this.description, this.priority, user);
+        this.cleanContents();
+      });      
     }
   }
 

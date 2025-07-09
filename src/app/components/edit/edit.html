@@ -28,7 +28,33 @@
             />
             Completada
         </label>
-        
+
+        <div class="form-group">
+          <label for="priority">Prioritat:</label>
+          <div class="priority-buttons">
+            <button
+              type="button"
+              [ngClass]="{ 'active-priority': task.priority === 'Alta', 'Alta': true }"
+              (click)="task.priority = 'Alta'">
+              Alta
+            </button>
+
+            <button
+              type="button"
+              [ngClass]="{ 'active-priority': task.priority === 'Mitjana', 'Mitjana': true }"
+              (click)="task.priority = 'Mitjana'">
+              Mitjana
+            </button>
+
+            <button
+              type="button"
+              [ngClass]="{ 'active-priority': task.priority === 'Baixa', 'Baixa': true }"
+              (click)="task.priority = 'Baixa'">
+              Baixa
+            </button>
+          </div>
+        </div>
+
         <button
           type="button"
           (click)="save()"

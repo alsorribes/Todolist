@@ -5,6 +5,7 @@
   max-width: 500px;
   font-size: 1.2rem;
   font-weight: 600;
+  padding-left: 2rem;
 }
 
 .form-input {
@@ -12,6 +13,7 @@
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%;
 }
 
 .checkbox-label {
@@ -19,10 +21,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
+  margin-left: 1.5rem;
 }
 
+/* Botó de desar amb el mateix ample que la resta */
 .form-button {
-  padding: 0.5rem 1rem;
+  width: 100%;
+  padding: 0.8rem;
   background-color: #1976d2;
   color: white;
   border: none;
@@ -30,15 +35,50 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 .form-button:hover {
   background-color: #1565c0;
 }
 
-.task-form label,
-.task-form input,
-.task-form textarea,
-.task-form .checkbox-label {
-  margin-left: 1.5rem;
+.task-form label {
+  margin-left: 0rem;
+}
+
+/* Contenidor de botons de prioritat */
+.priority-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+/* Botons amb amplada igual */
+.priority-buttons button {
+  flex: 1;
+  padding: 0.6rem 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.priority-buttons button.Alta {
+  background-color: #e74c3c;
+}
+
+.priority-buttons button.Mitjana {
+  background-color: #e67e22;
+}
+
+.priority-buttons button.Baixa {
+  background-color: #27ae60;
+}
+
+.priority-buttons button:hover {
+  filter: brightness(0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }

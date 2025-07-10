@@ -45,6 +45,13 @@
         
         <div class="task-info">
           <h3 class="task-title" [class.completed-text]="task.completed">
+            <span class="priority-dot"
+            [ngClass]="{
+              'alta': task.priority === 'Alta',
+              'mitjana': task.priority === 'Mitjana',
+              'baixa': task.priority === 'Baixa'
+            }">
+            </span>
             <ng-container *ngIf="!task.completed; else plainTitle">
               <a [routerLink]="['/edit', task.id]" class="task-link"> <!-- Si la tasca no esta completada podem accedir al link. Sino nomes mostrem el text-->
                 {{ task.title }}

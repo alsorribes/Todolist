@@ -255,3 +255,24 @@
     max-width: 250px;
   }
 }
+
+  .priority-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .priority-dot.alta {
+    background-color: #dc3545; /* vermell */
+  }
+
+  .priority-dot.mitjana {
+    background-color: #ffc107; /* groc */
+  }
+
+  .priority-dot.baixa {
+    background-color: #28a745; /* verd */
+  }

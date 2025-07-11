@@ -202,37 +202,33 @@ form {
   /* Removido height: auto que podía causar problemas */
 }
 
-/* ---------- Overlaid IonContent --------- */
+/* ---------- Popup centrat ---------- */
 .task-form-overlay {
-  /* Forcem a Ionic a no restar offsets de cap header/footer */
-  --offset-top: 0;
-  --offset-bottom: 0;
-
-  /* Fons totalment transparent */
-  --background: transparent;
-
-  /* Positionem-lo absolut a la finestra */
-  position: absolute;
-  top: 0px;       /* ajusta segons l’alçada del teu header */
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  
-  /* Mides que tu vulguis: */
-  width: 650px;
-  max-height: none;
-
-  /* Permet scroll intern si el formulari és més gran */
+  transform: translate(-50%, -50%);
+  width: 360px;            /* ajusta al teu gust */
+  max-width: 90vw;
+  max-height: 90vh;
   overflow-y: auto;
-
-  /* Sempre per sobre */
-  z-index: 1000;
-  padding: 0;      /* elimina el padding per defecte */
+  z-index: 1000;           /* per sobre del backdrop */
 }
-
 
 /* I assegura que la card segueixi amb fons blanc */
 .task-form-overlay ion-card.task-form-card {
   margin: 0;               /* eliminar margins extra */
+}
+
+/* ---------- Backdrop fosc ---------- */
+.task-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;            /* per sota el popup */
 }
 
 /* Responsive design */

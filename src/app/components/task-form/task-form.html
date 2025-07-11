@@ -1,62 +1,116 @@
-<form (ngSubmit)="onSubmit()" class="task-form">
-  
-  <div class="form-group">
-    <label for="title">Títol de la tasca:</label>
-    <input 
-      type="text" 
-      id="title" 
-      [(ngModel)]="title" 
-      name="title"
-      placeholder="Escriu el títol de la tasca"
-      [disabled]="!currentUser()"
-      (click)="showUserAlert()"
-    required>
-  </div>
+<ion-content fullscreen class="task-form-overlay">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+        <ion-card class="task-form-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="add-outline"></ion-icon>
+                Afegir Nova Tasca
+            </ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content>
+            <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+              
+              <!-- Campo Título -->
+              <ion-item>
+                <ion-label position="stacked">
+                  <strong>Títol de la tasca *</strong>
+                </ion-label>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="title"
+                  name="title"
+                  placeholder="Escriu el títol de la tasca"
+                  [disabled]="!currentUser()"
+                  (ionFocus)="showUserAlert()"
+                  required
+                  [clearInput]="true"
+                  maxlength="100">
+                </ion-input>
+              </ion-item>
 
-  <div class="form-group">
-    <label for="description">Descripció de la tasca (Opcional):</label>
-    <input
-      type="text"
-      id="description"
-      [(ngModel)]="description"
-      name="description"
-      placeholder="Escriu la descripció de la tasca"
-      [disabled]="!currentUser()"
-      (click)="showUserAlert()"
-    required>
-  </div>
+              <!-- Campo Descripción -->
+              <ion-item>
+                <ion-label position="stacked">
+                  <strong>Descripció de la tasca</strong>
+                  <span class="optional-text"> (Opcional)</span>
+                </ion-label>
+                <ion-textarea
+                  [(ngModel)]="description"
+                  name="description"
+                  placeholder="Escriu la descripció de la tasca"
+                  [disabled]="!currentUser()"
+                  (ionFocus)="showUserAlert()"
+                  rows="3"
+                  maxlength="500">
+                </ion-textarea>
+              </ion-item>
 
-  <div class="form-group">
-    <label for="priority">Prioritat:</label>
-      <div class="priority-buttons">
-        <button
-          type="button"
-          [ngClass]="{ 'active-priority': priority === 'Alta', 'Alta': true }"
-          [disabled]="!currentUser()"
-          (click)="priority = 'Alta'">
-          Alta
-        </button>
+              <!-- Selector de Prioridad -->
+              <ion-item>
+                <ion-label position="stacked">
+                  <strong>Prioritat</strong>
+                  <ion-icon [name]="getPriorityIcon()" class="priority-icon"></ion-icon>
+                </ion-label>
+              </ion-item>
+              
+              <ion-segment 
+                [(ngModel)]="priority" 
+                name="priority"
+                [color]="getSegmentColor()"
+                [disabled]="!currentUser()">
+                <ion-segment-button value="Baixa">
+                  <ion-label>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                    <br>Baixa
+                  </ion-label>
+                </ion-segment-button>
+                
+                <ion-segment-button value="Mitjana">
+                  <ion-label>
+                    <ion-icon name="warning-outline"></ion-icon>
+                    <br>Mitjana
+                  </ion-label>
+                </ion-segment-button>
+                
+                <ion-segment-button value="Alta">
+                  <ion-label>
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    <br>Alta
+                  </ion-label>
+                </ion-segment-button>
+              </ion-segment>
 
-        <button
-          type="button"
-          [ngClass]="{ 'active-priority': priority === 'Mitjana', 'Mitjana': true }"
-          [disabled]="!currentUser()"
-          (click)="priority = 'Mitjana'">
-          Mitjana
-        </button>
+              <!-- Botón de Envío -->
+              <div class="submit-button-container">
+                <ion-button 
+                  type="submit" 
+                  expand="block" 
+                  size="large"
+                  [disabled]="!title || !currentUser()"
+                  [color]="getSegmentColor()">
+                  <ion-icon name="add-outline" slot="start"></ion-icon>
+                  Afegir Tasca
+                </ion-button>
+              </div>
 
-        <button
-          type="button"
-          [ngClass]="{ 'active-priority': priority === 'Baixa', 'Baixa': true }"
-          [disabled]="!currentUser()"
-          (click)="priority = 'Baixa'">
-          Baixa
-        </button>
-      </div>
-  </div>
-  
-  
-  <button type="submit" [disabled]="!title || !currentUser()">
-    Afegir Tasca
-  </button>
-</form>
+              <!-- Mensaje de usuario no seleccionado -->
+              <div class="user-warning" *ngIf="!currentUser()">
+                <ion-item color="warning">
+                  <ion-icon name="warning-outline" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Selecciona un usuari</h3>
+                    <p>Has de seleccionar un usuari abans d'afegir tasques</p>
+                  </ion-label>
+                </ion-item>
+              </div>
+
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

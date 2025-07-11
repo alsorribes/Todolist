@@ -21,6 +21,8 @@ export class Home {
   tasks: Task[] = [];
   name$!: Observable<string>;
   userMenuOpen = false;
+  public showForm = false;
+
 
   constructor(private taskService: TaskService, private userService: UserService) {
     this.tasks = this.taskService.getPendingTasks();
@@ -48,5 +50,12 @@ export class Home {
   setToAlba(): void {
     this.userService.setNameToAlba();
     this.userMenuOpen = false;
+  }
+
+  openForm() {
+    this.showForm = true;
+  }
+  closeForm() {
+    this.showForm = false;
   }
 }

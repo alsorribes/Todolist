@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Imports de Ionic - Sintaxis correcta para versiones actuales */
+
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
+@import '@ionic/angular/css/display.css';
+
 /* Reset y estilos globales */
 * {
   margin: 0;

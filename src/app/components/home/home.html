@@ -25,8 +25,8 @@
   <main class="app-main">
     <!-- Formulario para agregar tareas -->
     <section class="form-section">
-      <h2>Afegir Nova Tasca</h2>
-      <app-task-form></app-task-form>
+      <h2 style="cursor: pointer;" (click)="openForm()">+ Afegir Nova Tasca</h2>
+      <app-task-form *ngIf="showForm" (closed)="closeForm()"></app-task-form>
     </section>
 
     <!-- Lista de tareas -->

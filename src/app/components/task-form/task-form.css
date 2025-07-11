@@ -1,146 +1,303 @@
-.task-form {
-  max-width: 600px;
-  margin: 0 auto;
+/* Estilos para el formulario con Ionic */
+.task-form-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease-out;
+  /* Removido min-height: auto que causaba problemas */
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+.task-form-card ion-card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  border-radius: 16px 16px 0 0;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
+.task-form-card ion-card-title {
+  font-size: 1.3rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.task-form-card ion-card-title ion-icon {
+  font-size: 1.5rem;
+}
+
+.task-form-card ion-card-content {
+  padding: 20px;
+}
+
+/* Estilos para los items del formulario */
+ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  --background: #f8f9fa;
+  --border-color: #e9ecef;
+  --border-width: 1px;
+  --min-height: 48px;
+}
+
+ion-item:focus-within {
+  --background: #fff;
+  --border-color: #667eea;
+  --border-width: 2px;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Estilos para las etiquetas */
+ion-label strong {
   color: #2c3e50;
   font-size: 0.95rem;
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e1e5e9;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s ease;
-  background-color: #fff;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #95a5a6;
+.optional-text {
+  color: #6c757d;
+  font-size: 0.8rem;
   font-style: italic;
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* Botón de envío */
-button[type="submit"] {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 8px;
+/* Estilos para los inputs */
+ion-input, ion-textarea {
+  --placeholder-color: #6c757d;
+  --placeholder-opacity: 0.7;
+  --color: #2c3e50;
   font-size: 1rem;
+}
+
+ion-input[disabled], ion-textarea[disabled] {
+  --color: #adb5bd;
+  --background: #f8f9fa;
+}
+
+/* Estilos para el selector de prioridad */
+.priority-icon {
+  margin-left: 8px;
+  font-size: 1.2rem;
+}
+
+ion-segment {
+  margin: 16px 0;
+  border-radius: 12px;
+  --background: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-segment-button {
+  --color: #6c757d;
+  --color-checked: #fff;
+  --indicator-color: transparent;
+  --indicator-color-checked: transparent;
+  margin: 4px;
+  border-radius: 8px;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.3s ease;
-  width: 100%;
-  text-transform: uppercase;
+}
+
+ion-segment-button::part(native) {
+  border-radius: 8px;
+}
+
+/* Colores específicos para cada prioridad */
+ion-segment[color="success"] ion-segment-button[aria-checked="true"] {
+  --background-checked: #28a745;
+  --color-checked: #fff;
+}
+
+ion-segment[color="warning"] ion-segment-button[aria-checked="true"] {
+  --background-checked: #ffc107;
+  --color-checked: #212529;
+}
+
+ion-segment[color="danger"] ion-segment-button[aria-checked="true"] {
+  --background-checked: #dc3545;
+  --color-checked: #fff;
+}
+
+/* Estilos para el botón de envío */
+.submit-button-container {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+ion-button[size="large"] {
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-weight: 600;
+  font-size: 1.1rem;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2980b9, #21618c);
+ion-button[size="large"]:not([disabled]):hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-button[type="submit"]:active {
+ion-button[size="large"]:not([disabled]):active {
   transform: translateY(0);
 }
 
-button[type="submit"]:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
-  transform: none;
+ion-button[disabled] {
+  --background: #adb5bd;
+  --color: #6c757d;
   box-shadow: none;
+  transform: none;
 }
 
-.priority-buttons {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+/* Estilos para el mensaje de advertencia */
+.user-warning {
+  margin-top: 16px;
+  animation: fadeIn 0.3s ease-out;
 }
 
-.priority-buttons button {
-  padding: 0.4rem 4.9rem;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
+.user-warning ion-item {
+  --background: #fff3cd;
+  --border-color: #ffeaa7;
+  --color: #856404;
+  margin-bottom: 0;
 }
 
-.priority-buttons button.Alta {
-  background-color: #e74c3c; /* rojo */
+.user-warning ion-item ion-icon {
+  color: #f39c12;
 }
 
-.priority-buttons button.Mitjana {
-  background-color: #e67e22; /* naranja */
+/* Estilos para alertas personalizadas */
+.custom-alert .alert-wrapper {
+  --background: #fff;
+  --color: #2c3e50;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-.priority-buttons button.Baixa {
-  background-color: #27ae60; /* verde */
+.success-alert .alert-wrapper {
+  --background: #d4edda;
+  --color: #155724;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(40, 167, 69, 0.2);
 }
 
-.priority-buttons button:hover {
-  filter: brightness(0.9);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+/* CORREGIDO: Configuración correcta para ion-content */
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  /* Removido overflow: visible que causaba problemas */
+}
+
+/* Asegurar que el formulario funcione correctamente */
+form {
+  display: block;
+  width: 100%;
+  /* Removido height: auto que podía causar problemas */
+}
+
+/* ---------- Overlaid IonContent --------- */
+.task-form-overlay {
+  /* Forcem a Ionic a no restar offsets de cap header/footer */
+  --offset-top: 0;
+  --offset-bottom: 0;
+
+  /* Fons totalment transparent */
+  --background: transparent;
+
+  /* Positionem-lo absolut a la finestra */
+  position: absolute;
+  top: 0px;       /* ajusta segons l’alçada del teu header */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Mides que tu vulguis: */
+  width: 650px;
+  max-height: none;
+
+  /* Permet scroll intern si el formulari és més gran */
+  overflow-y: auto;
+
+  /* Sempre per sobre */
+  z-index: 1000;
+  padding: 0;      /* elimina el padding per defecte */
 }
 
 
+/* I assegura que la card segueixi amb fons blanc */
+.task-form-overlay ion-card.task-form-card {
+  margin: 0;               /* eliminar margins extra */
+}
 
-/* Responsive */
+/* Responsive design */
 @media (max-width: 768px) {
-  .task-form {
-    max-width: 100%;
+  .task-form-card {
+    margin: 8px;
+    border-radius: 12px;
   }
   
-  .form-group input,
-  .form-group textarea {
-    padding: 0.6rem;
+  ion-segment-button {
+    font-size: 0.9rem;
   }
   
-  button[type="submit"] {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
+  ion-button[size="large"] {
+    font-size: 1rem;
   }
 }
 
-/* Animaciones de entrada */
-.task-form {
-  animation: fadeInUp 0.5s ease-out;
-}
-
+/* Animaciones */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .task-form-card {
+    --background: #1e1e1e;
+    --color: #fff;
+  }
+  
+  .task-form-card ion-card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  ion-item {
+    --background: #2d2d2d;
+    --color: #fff;
+    --border-color: #404040;
+  }
+  
+  ion-label strong {
+    color: #fff;
+  }
+  
+  ion-input, ion-textarea {
+    --color: #fff;
+  }
+  
+  ion-segment {
+    --background: #2d2d2d;
   }
 }

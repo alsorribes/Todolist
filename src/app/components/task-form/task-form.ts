@@ -33,7 +33,9 @@ import {
   checkmarkOutline, 
   alertCircleOutline, 
   warningOutline, 
-  addOutline 
+  addOutline,
+  closeOutline,
+  close 
 } from 'ionicons/icons';
 
 // Registrar iconos globalmente ANTES de la declaración del componente
@@ -41,7 +43,9 @@ addIcons({
   'checkmark-outline': checkmarkOutline,
   'alert-circle-outline': alertCircleOutline,
   'warning-outline': warningOutline,
-  'add-outline': addOutline
+  'add-outline': addOutline,
+  'close-outline': closeOutline,
+  'close': close
 });
 
 //Formulari per afegir tasques
@@ -63,9 +67,9 @@ addIcons({
     IonSegment,
     IonSegmentButton,
     IonIcon,
-    IonGrid,
-    IonRow,
-    IonCol
+    //IonGrid,
+    //IonRow,
+    //IonCol
   ],
   standalone: true,
   templateUrl: './task-form.html',
@@ -136,7 +140,7 @@ export class TaskForm implements OnInit {
     }
   }
 
-  // CORREGIDO: Simplificar el manejo de alertas
+  //Simplificar el manejo de alertas
   async showUserAlert(): Promise<void> {
     try {
       if (this.currentUser() || this.isAlertOpen) return;

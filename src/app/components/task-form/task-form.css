@@ -4,14 +4,17 @@
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 0.5s ease-out;
-  /* Removido min-height: auto que causaba problemas */
+  position: relative;
 }
 
 .task-form-card ion-card-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4c61ff;
   color: white;
   text-align: center;
   border-radius: 16px 16px 0 0;
+  position: relative;
+  padding: 12px 16px;
+  height: auto;
 }
 
 .task-form-card ion-card-title {
@@ -28,7 +31,7 @@
 }
 
 .task-form-card ion-card-content {
-  padding: 20px;
+  padding: 30px 20px 0px 20px !important; /* CORREGIDO: Forzar eliminación del padding inferior */
 }
 
 /* Estilos para los items del formulario */
@@ -122,8 +125,8 @@ ion-segment[color="danger"] ion-segment-button[aria-checked="true"] {
 
 /* Estilos para el botón de envío */
 .submit-button-container {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: 20px;
+  margin-bottom: 20px; /* CORREGIDO: Añadir margen inferior */
 }
 
 ion-button[size="large"] {
@@ -157,6 +160,7 @@ ion-button[disabled] {
 /* Estilos para el mensaje de advertencia */
 .user-warning {
   margin-top: 16px;
+  margin-bottom: 20px; /* CORREGIDO: Añadir margen inferior */
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -188,18 +192,22 @@ ion-button[disabled] {
 
 /* CORREGIDO: Configuración correcta para ion-content */
 ion-content {
-  --padding-top: 0;
-  --padding-bottom: 0;
-  --padding-start: 0;
-  --padding-end: 0;
-  /* Removido overflow: visible que causaba problemas */
+  --padding-top: 0 !important;
+  --padding-bottom: 0 !important;
+  --padding-start: 0 !important;
+  --padding-end: 0 !important;
+}
+
+/* CORREGIDO: Eliminar cualquier padding del ion-content */
+ion-content.task-form-overlay {
+  padding: 0 !important;
 }
 
 /* Asegurar que el formulario funcione correctamente */
 form {
   display: block;
   width: 100%;
-  /* Removido height: auto que podía causar problemas */
+  margin-bottom: 0 !important;
 }
 
 /* ---------- Popup centrat ---------- */
@@ -208,16 +216,16 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 360px;            /* ajusta al teu gust */
+  width: 360px;
   max-width: 90vw;
   max-height: 90vh;
   overflow-y: auto;
-  z-index: 1000;           /* per sobre del backdrop */
+  z-index: 1000;
 }
 
 /* I assegura que la card segueixi amb fons blanc */
 .task-form-overlay ion-card.task-form-card {
-  margin: 0;               /* eliminar margins extra */
+  margin: 0;
 }
 
 /* ---------- Backdrop fosc ---------- */
@@ -228,7 +236,59 @@ form {
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.5);
-  z-index: 999;            /* per sota el popup */
+  z-index: 999;
+}
+
+/* CORREGIDO: Botón de cierre cuadrado y rojo - SIMPLIFICADO */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: #dc3545 !important;
+  border: 2px solid #c82333 !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+  transition: all 0.3s ease !important;
+  --color: #ffffff !important;
+  --background: #dc3545 !important;
+  --background-hover: #c82333 !important;
+  --background-activated: #bd2130 !important;
+}
+
+/* Efecto hover para el botón de cierre */
+.close-btn:hover {
+  background: #c82333 !important;
+  border-color: #bd2130 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* Efecto active para el botón de cierre */
+.close-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* CORREGIDO: Icono de cierre más visible con fallback */
+.close-btn ion-icon {
+  font-size: 18px !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+/* AÑADIDO: Fallback si el icono no carga */
+.close-btn::before {
+  content: "×";
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1;
+  position: absolute;
 }
 
 /* Responsive design */
@@ -244,6 +304,16 @@ form {
   
   ion-button[size="large"] {
     font-size: 1rem;
+  }
+  
+  .close-btn {
+    width: 28px;
+    height: 28px;
+    right: 8px;
+  }
+  
+  .close-btn ion-icon {
+    font-size: 16px;
   }
 }
 
@@ -295,5 +365,16 @@ form {
   
   ion-segment {
     --background: #2d2d2d;
+  }
+  
+  /* Botón de cierre en modo oscuro */
+  .close-btn {
+    background: #e74c3c;
+    border-color: #c0392b;
+  }
+  
+  .close-btn:hover {
+    background: #c0392b;
+    border-color: #a93226;
   }
 }

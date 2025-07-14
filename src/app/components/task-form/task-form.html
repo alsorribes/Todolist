@@ -1,22 +1,15 @@
 <ng-container *ngIf="showForm">
-  <!-- 1. Fondo fosc -->
   <div class="task-backdrop"></div>
-  
-  <!-- 2. Popup centrat -->
-  <ion-content class="task-form-overlay">
+  <div class="task-form-modal">
     <ion-card class="task-form-card">
+      <!-- Header del modal -->
       <ion-card-header>
-        <!-- CORREGIDO: Botó tancar amb icono alternativo y fallback -->
-        <ion-button 
-          fill="clear" 
-          class="close-btn" 
-          (click)="closed.emit()">
-          <ion-icon name="close"></ion-icon>
-        </ion-button>
-        <ion-card-title>
-          <ion-icon name="add-outline"></ion-icon>
-          Afegir Nova Tasca
-        </ion-card-title>
+        <ion-toolbar color="primary">
+          <ion-button slot="start" fill="clear" (click)="closed.emit()" class="close-button">
+            <ion-icon name="close-outline" color="light" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-title>Afegir Nova Tasca</ion-title>
+        </ion-toolbar>
       </ion-card-header>
           
       <ion-card-content>
@@ -118,5 +111,5 @@
         </form>
       </ion-card-content>
     </ion-card>
-  </ion-content>
+  </div>
 </ng-container>

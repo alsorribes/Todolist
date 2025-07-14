@@ -8,11 +8,13 @@ import { RouterModule } from '@angular/router';
 import { User } from "../user/user";
 import { Observable } from 'rxjs';
 import { UserService } from '../../services/user.service';
+import { IonicModule } from '@ionic/angular';
+import { pencilOutline, personCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, TaskForm, TaskList],
+  imports: [CommonModule, RouterModule, TaskForm, TaskList, IonicModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -22,6 +24,8 @@ export class Home {
   name$!: Observable<string>;
   userMenuOpen = false;
   public showForm = false;
+  pencilOutline = pencilOutline;
+  personCircleOutline = personCircleOutline;
 
 
   constructor(private taskService: TaskService, private userService: UserService) {

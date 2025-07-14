@@ -1,44 +1,64 @@
-<!DOCTYPE html>
-<div class="app-container">
-  <!-- Header -->
-  <header class="app-header">
-    <div class="user-selector">
-      <button (click)="toggleUserMenu()" class="user-botton">
-        <span class="user-icon">👤</span>
-        <strong class="user-name">{{ name$ | async }}</strong>
-      </button>
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      
+      <!-- icona + títol -->
+      <ion-title class="app-title">{{ title }}</ion-title>
 
-      <ul *ngIf="userMenuOpen" class="user-dropdown">
-        <li (click)="setToJoan()"> Joan</li>
-        <li (click)="setToJordi()"> Jordi</li>
-        <li (click)="setToAlba()"> Alba</li>
-      </ul>
-    </div>
+      <!-- selector d'usuari -->
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="toggleUserMenu()">
+          <ion-icon slot="icon-only" [icon]="personCircleOutline" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar color="primary">
+      <ion-title class="app-subtitle">
+        Organitza les teves tasques de manera eficient
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <div class="title-container">
-      <h1 class="app-title">📝 {{ title }}</h1>
-      <p class="app-subtitle">Organitza les teves tasques de manera eficient</p>
-    </div>
-  </header>
+  <ion-content>
+    <!-- dropdown menú d'usuari -->
+    <ion-list *ngIf="userMenuOpen" class="user-dropdown">
+      <ion-item button (click)="setToJoan()">Joan</ion-item>
+      <ion-item button (click)="setToJordi()">Jordi</ion-item>
+      <ion-item button (click)="setToAlba()">Alba</ion-item>
+    </ion-list>
 
-  <!-- Main Content -->
-  <main class="app-main">
-    <!-- Formulario para agregar tareas -->
-    <section class="form-section">
-      <h2 style="cursor: pointer;" (click)="openForm()">+ Afegir Nova Tasca</h2>
-      <app-task-form *ngIf="showForm" (closed)="closeForm()"></app-task-form>
-    </section>
+    <!-- botó per obrir el formulari -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="clickable" (click)="openForm()">
+          + Afegir Nova Tasca
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
 
-    <!-- Lista de tareas -->
-    <section class="list-section">
-      <h2>Les Meves Tasques</h2>
-      <app-task-list></app-task-list>
-    </section>
-  </main>
+    <!-- modal inline del formulari -->
+    <app-task-form
+      *ngIf="showForm"
+      (closed)="closeForm()">
+    </app-task-form>
 
-  <!-- Footer -->
-  <footer class="app-footer">
-    <p>&copy; 2025 TodoList App - Gestiona les teves tasques amb Angular</p>
-    <p>&copy; Albert Sorribes</p>
-  </footer>
-</div>
+    <!-- llista de tasques -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Les Meves Tasques</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <app-task-list></app-task-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title class="footer-text">
+        <p>© 2025 TodoList App – Gestiona les teves tasques amb Angular</p>
+        <p>© Albert Sorribes</p> 
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

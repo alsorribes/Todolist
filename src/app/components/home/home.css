@@ -18,11 +18,14 @@
   margin: 0;
   font-size: 2.8rem;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .app-subtitle {
-  margin: 0.2rem 0;
   font-size: 1.1rem;
+  text-align: center;
+  color: #ddeeff;
+  width: 100%;
 }
 
 .user-selector {
@@ -49,7 +52,7 @@
 
 .user-dropdown {
   position: absolute;
-  top: 2.2rem;
+  top: 100%;
   right: 0;
   background: white;
   color: black;
@@ -70,4 +73,65 @@
 
 .user-dropdown li:hover {
   background-color: #f0f0f0;
+}
+
+/* Centrar subtítol dins del toolbar */
+.subtitle {
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Elimina qualsevol espai blanc per sota del footer */
+ion-footer {
+  --border-width: 0;
+}
+
+/* Dropdown d'usuari superposat i clicable */
+.user-dropdown {
+  position: absolute;
+  top: 5px;      /* just sota el primer toolbar */
+  right: 5px;
+  width: 150px;
+  z-index: 1000;
+}
+
+/* Títol clicable estil: porta el cursor pointer */
+.clickable {
+  cursor: pointer;
+  color: var(--ion-color-primary-shade);
+}
+
+/* Content / footer */
+ion-content {
+  --background: var(--ion-color-light);
+}
+ion-footer {
+  --background: #4e79f8;
+  --border-width: 0;
+}
+
+/* Estils per al footer text */
+.footer-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ffffff;
+  background-color: #4e79f8;
+}
+
+/* Elimina marges blancs inesperats */
+ion-content, ion-app, ion-page, app-root {
+  background: var(--ion-background-color);
+}
+
+/* Header i títols */
+ion-header ion-toolbar:first-of-type {
+  padding-top: 1rem;
+  position: relative;
+}
+
+/* Selecciona l'ion-button amb classe user-btn i fes l'icona blanca */
+ion-icon[name="person-circle-outline"] {
+  color: #ffffff !important;
+  font-size: 1.5rem;
 }

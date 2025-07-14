@@ -291,6 +291,16 @@ form {
   position: absolute;
 }
 
+/* força el modal per sobre del header */
+.task-form-modal {
+  position: absolute;
+  top: 80px;       /* sota el header de 56px + toolbar secundari 48px */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   .task-form-card {

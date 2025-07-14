@@ -22,6 +22,8 @@ import {
   IonSegmentButton,
   IonIcon,
   AlertController,
+  IonTitle,
+  IonToolbar,
   IonGrid,
   IonRow,
   IonCol
@@ -54,11 +56,11 @@ addIcons({
   imports: [
     FormsModule, 
     CommonModule,
-    IonContent,
+    //IonContent,
     IonCard,
     IonCardContent,
     IonCardHeader,
-    IonCardTitle,
+    //IonCardTitle,
     IonItem,
     IonLabel,
     IonInput,
@@ -67,6 +69,8 @@ addIcons({
     IonSegment,
     IonSegmentButton,
     IonIcon,
+    IonTitle,
+    IonToolbar,
     //IonGrid,
     //IonRow,
     //IonCol

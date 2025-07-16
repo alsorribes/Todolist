@@ -51,6 +51,21 @@
         <app-task-list></app-task-list>
       </ion-card-content>
     </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="clickable" (click)="getLocation()">
+          🧭 Obtenir la meva localització
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="currentLocation">
+          <p>Latitud: {{ currentLocation.lat }}</p>
+          <p>Longitud: {{ currentLocation.lng }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
   </ion-content>
 
   <ion-footer>

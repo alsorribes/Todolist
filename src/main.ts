@@ -5,8 +5,11 @@ import { App } from './app/app';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
+import { defineCustomElements } from '@ionic/core/loader';
 
 // Configuración correcta de Ionic
+defineCustomElements(window);
+
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes), 

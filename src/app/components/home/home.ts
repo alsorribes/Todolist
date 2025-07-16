@@ -10,14 +10,16 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { IonicModule } from '@ionic/angular';
 import { pencilOutline, personCircleOutline } from 'ionicons/icons';
+import { GeolocationService } from '../../services/geolocation.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule, TaskForm, TaskList, IonicModule],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
 })
+
 export class Home {
   protected title = 'ToDoList';
   tasks: Task[] = [];
@@ -26,9 +28,10 @@ export class Home {
   public showForm = false;
   pencilOutline = pencilOutline;
   personCircleOutline = personCircleOutline;
+  currentLocation: { lat: number; lng: number } | null = null;
+  private watchId: string | null = null;
 
-
-  constructor(private taskService: TaskService, private userService: UserService) {
+  constructor(private taskService: TaskService, private userService: UserService, private geolocationService: GeolocationService) {
     this.tasks = this.taskService.getPendingTasks();
   }
 
@@ -61,5 +64,29 @@ export class Home {
   }
   closeForm() {
     this.showForm = false;
+  }
+
+  async getLocation() {
+  console.log('Botó de geolocalització clickat');
+  try {
+    console.log('Intentant obtenir localització...');
+    this.currentLocation = await this.geolocationService.getCurrentPosition();
+    console.log('Localització obtinguda:', this.currentLocation);
+  } catch (e) {
+    console.error('Error obtenint la posició:', e);
+    // Mostrar error a la UI temporalment
+    alert('Error: ' + JSON.stringify(e));
+  }
+  }
+
+  async beginWatching() {
+    this.watchId = await this.geolocationService.startWatch();
+  }
+
+  async stopWatching() {
+    if (this.watchId) {
+      await this.geolocationService.clearWatch(this.watchId);
+      this.watchId = null;
+    }
   }
 }

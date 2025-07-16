@@ -10,8 +10,15 @@
         <ion-button fill="clear" (click)="toggleUserMenu()">
           <ion-icon slot="icon-only" [icon]="personCircleOutline" color="light"></ion-icon>
         </ion-button>
+        <ion-text class="user-name" *ngIf="name$ | async as name; else noUser">
+          {{ name }}
+        </ion-text>
+        <ng-template #noUser>
+          <ion-text class="user-name">Usuari</ion-text>
+        </ng-template>
       </ion-buttons>
     </ion-toolbar>
+    
     <ion-toolbar color="primary">
       <ion-title class="app-subtitle">
         Organitza les teves tasques de manera eficient

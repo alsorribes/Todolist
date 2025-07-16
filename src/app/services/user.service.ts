@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private nameSubject = new BehaviorSubject<string>('Usuari inicial');  //Manté el valor actual i emet aquest valor cada vegada que canvia
+  private nameSubject = new BehaviorSubject<string>('Usuari');  //Manté el valor actual i emet aquest valor cada vegada que canvia
   name$: Observable<string> = this.nameSubject.asObservable();  //Covertim el subject a Observable només de lectura. Això vol dir que desde fora del servei només es pot llegir el valor, no es pot modificar
 
   setNameToJoan() {

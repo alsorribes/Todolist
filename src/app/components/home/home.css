@@ -75,6 +75,14 @@
   background-color: #f0f0f0;
 }
 
+.user-name {
+  display: block;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 4px;
+}
+
 /* Centrar subtítol dins del toolbar */
 .subtitle {
   font-size: 0.9rem;

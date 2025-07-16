@@ -30,6 +30,8 @@
 	<string>La teva ubicació és necessària per mostrar tasques properes.
 La teva ubicació és necessària per mostrar tasques properes.
 </string>
+	<key>NSCameraUsageDescription</key>
+	<string>La app necessita accedir a la càmera per fer fotos de les teves tasques</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -16,6 +16,12 @@ const config: CapacitorConfig = {
         coarseLocation: "granted",
         fineLocation: "granted"
       }
+    },
+    Camera: {
+      permissions: {
+        camera: "granted",
+        photos: "granted"
+      }
     }
   }
 };

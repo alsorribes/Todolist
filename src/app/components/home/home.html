@@ -66,6 +66,19 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="clickable" (click)="onTakePicture()">
+          📸 Pren una Foto
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="lastPhoto">
+          <img [src]="lastPhoto" alt="Foto presa" class="photo-preview">
+        </div>
+      </ion-card-content>
+    </ion-card>
+
   </ion-content>
 
   <ion-footer>

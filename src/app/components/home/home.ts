@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
 import { IonicModule } from '@ionic/angular';
 import { pencilOutline, personCircleOutline } from 'ionicons/icons';
 import { GeolocationService } from '../../services/geolocation.service';
+import { CamaraService } from '../../services/camara.service';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +31,9 @@ export class Home {
   personCircleOutline = personCircleOutline;
   currentLocation: { lat: number; lng: number } | null = null;
   private watchId: string | null = null;
+  public lastPhoto: string | undefined;
 
-  constructor(private taskService: TaskService, private userService: UserService, private geolocationService: GeolocationService) {
+  constructor(private taskService: TaskService, private userService: UserService, private geolocationService: GeolocationService, private camaraService: CamaraService) {
     this.tasks = this.taskService.getPendingTasks();
   }
 
@@ -87,6 +89,15 @@ export class Home {
     if (this.watchId) {
       await this.geolocationService.clearWatch(this.watchId);
       this.watchId = null;
+    }
+  }
+
+  async onTakePicture() {
+    try {
+      this.lastPhoto = await this.camaraService.takePicture();
+      console.log('Foto presa:', this.lastPhoto);
+    } catch (error) {
+      console.error('Error prenent la foto:', error);
     }
   }
 }
